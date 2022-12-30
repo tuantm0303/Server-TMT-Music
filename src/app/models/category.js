@@ -10,6 +10,11 @@ const categorySchema = new Schema(
       type: String,
       required: true,
     },
+    slug: {
+      type: String,
+      lowercase: true,
+      index: true,
+    },
   },
   { timestamps: true }
 );
