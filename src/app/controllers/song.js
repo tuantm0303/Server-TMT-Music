@@ -1,3 +1,4 @@
+import slugify from "slugify";
 import { Song } from "../models";
 
 export const list = async (req, res) => {
@@ -25,6 +26,7 @@ export const read = async (req, res) => {
 
 export const create = async (req, res) => {
   const doc = req.body;
+  doc.slug = slugify(doc.title);
   try {
     const exitSong = await Song.findOne({ title: doc.title }).exec();
     if (exitSong) {
@@ -45,6 +47,7 @@ export const update = async (req, res) => {
   const filter = { _id: req.params.id };
   const doc = req.body;
   const option = { new: true };
+  doc.slug = slugify(doc.title);
   try {
     const exitSong = await Song.findOne({ title: doc.title }).exec();
     if (exitSong) {
