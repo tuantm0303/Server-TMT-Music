@@ -3,7 +3,11 @@ import { Song } from "../models";
 
 export const list = async (req, res) => {
   try {
-    const songs = await Song.find({}).exec();
+    const songs = await Song.find({})
+      .populate({ path: "authorId", select: "name" })
+      .populate({ path: "singerId", select: "fullname" })
+      .populate({ path: "categoryId", select: "name" })
+      .exec();
     return res.status(200).json(songs);
   } catch (error) {
     return res.status(400).json({
@@ -15,7 +19,11 @@ export const list = async (req, res) => {
 export const read = async (req, res) => {
   const filter = { _id: req.params.id };
   try {
-    const song = await Song.findOne(filter).exec();
+    const song = await Song.findOne(filter)
+      .populate({ path: "authorId", select: "name" })
+      .populate({ path: "singerId", select: "fullname" })
+      .populate({ path: "categoryId", select: "name" })
+      .exec();
     return res.status(200).json(song);
   } catch (error) {
     return res.status(400).json({
@@ -27,7 +35,11 @@ export const read = async (req, res) => {
 export const readSlug = async (req, res) => {
   const filter = { slug: req.params.slug };
   try {
-    const song = await Song.findOne(filter).exec();
+    const song = await Song.findOne(filter)
+      .populate({ path: "authorId", select: "name" })
+      .populate({ path: "singerId", select: "fullname" })
+      .populate({ path: "categoryId", select: "name" })
+      .exec();
     return res.status(200).json(song);
   } catch (error) {
     return res.status(400).json({
