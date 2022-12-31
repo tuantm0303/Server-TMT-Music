@@ -85,7 +85,6 @@ export const listSongBySinger = async (req, res) => {
       songs,
     });
   } catch (error) {
-    console.log(error);
     return res.status(400).json({
       message: "Không tìm được tác giả!",
     });

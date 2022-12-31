@@ -1,6 +1,5 @@
 import slugify from "slugify";
-import { Category } from "../models";
-import { Song } from "../models";
+import { Category, Song } from "../models";
 
 export const list = async (req, res) => {
   try {
