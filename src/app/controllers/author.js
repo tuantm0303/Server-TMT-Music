@@ -1,4 +1,4 @@
-import { Author } from "../models";
+import { Author, Song } from "../models";
 
 export const list = async (req, res) => {
   try {
@@ -72,6 +72,22 @@ export const remove = async (req, res) => {
   } catch (error) {
     return res.status(400).json({
       message: "Không xóa được tác giả!",
+    });
+  }
+};
+
+export const listSongBySinger = async (req, res) => {
+  try {
+    const authorId = await Author.findOne({ _id: req.params.id }).exec();
+    const songs = await Song.find({ authorId }).select("-authorId").exec();
+    return res.status(200).json({
+      authorId,
+      songs,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      message: "Không tìm được tác giả!",
     });
   }
 };

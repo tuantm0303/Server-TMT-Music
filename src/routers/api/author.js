@@ -11,5 +11,6 @@ routerAuthor.get("/", controller.authorController.list);
 routerAuthor.get("/:id", controller.authorController.read);
 routerAuthor.put("/:id", controller.authorController.update);
 routerAuthor.delete("/:id", controller.authorController.remove);
+routerAuthor.get("/listSong/:id", controller.authorController.listSongBySinger);
 
 export default routerAuthor;
