@@ -12,5 +12,9 @@ routerCategory.get("/:id", controller.categoryController.read);
 routerCategory.get("/slug/:slug", controller.categoryController.readSLug);
 routerCategory.put("/:id", controller.categoryController.update);
 routerCategory.delete("/:id", controller.categoryController.remove);
+routerCategory.get(
+  "/listSong/:id",
+  controller.categoryController.listSongByCategory
+);
 
 export default routerCategory;

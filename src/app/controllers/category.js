@@ -1,5 +1,6 @@
 import slugify from "slugify";
 import { Category } from "../models";
+import { Song } from "../models";
 
 export const list = async (req, res) => {
   try {
@@ -91,6 +92,21 @@ export const remove = async (req, res) => {
   } catch (error) {
     return res.status(400).json({
       message: "Không xóa được thể loại!",
+    });
+  }
+};
+
+export const listSongByCategory = async (req, res) => {
+  try {
+    const categoryId = await Category.findOne({ _id: req.params.id }).exec();
+    const songs = await Song.find({ categoryId }).select("-categoryId").exec();
+    return res.status(200).json({
+      categoryId,
+      songs,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: "Không tìm được thể loại!",
     });
   }
 };
