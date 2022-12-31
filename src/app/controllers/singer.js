@@ -1,5 +1,5 @@
 import slugify from "slugify";
-import { Singer } from "../models";
+import { Singer, Song } from "../models";
 
 export const list = async (req, res) => {
   try {
@@ -87,6 +87,22 @@ export const remove = async (req, res) => {
   } catch (error) {
     return res.status(400).json({
       message: "Không xóa được ca sĩ!",
+    });
+  }
+};
+
+export const listSongBySinger = async (req, res) => {
+  try {
+    const singerId = await Singer.findOne({ _id: req.params.id }).exec();
+    const songs = await Song.find({ singerId }).select("-singerId").exec();
+    return res.status(200).json({
+      singerId,
+      songs,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      message: "Không tìm được ca sĩ!",
     });
   }
 };
