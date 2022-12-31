@@ -24,6 +24,18 @@ export const read = async (req, res) => {
   }
 };
 
+export const readSLug = async (req, res) => {
+  const filter = { slug: req.params.slug };
+  try {
+    const category = await Category.findOne(filter).exec();
+    return res.status(200).json(category);
+  } catch (error) {
+    return res.status(400).json({
+      message: "Không có thể loại nào!",
+    });
+  }
+};
+
 export const create = async (req, res) => {
   const doc = req.body;
   doc.slug = slugify(doc.name);

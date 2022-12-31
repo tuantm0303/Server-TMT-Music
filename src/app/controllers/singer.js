@@ -24,6 +24,18 @@ export const read = async (req, res) => {
   }
 };
 
+export const readSlug = async (req, res) => {
+  const filter = { slug: req.params.slug };
+  try {
+    const singer = await Singer.findOne(filter).exec();
+    return res.status(200).json(singer);
+  } catch (error) {
+    return res.status(400).json({
+      message: "Không có ca sĩ nào!",
+    });
+  }
+};
+
 export const create = async (req, res) => {
   const doc = req.body;
   doc.slug = slugify(doc.fullname);
