@@ -15,7 +15,7 @@ const singerSchema = new Schema(
       required: true,
     },
     image: {
-      type: Object,
+      type: String,
       required: true,
     },
     description: {
