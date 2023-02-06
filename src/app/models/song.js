@@ -34,6 +34,10 @@ const songSchema = new Schema(
       lowercase: true,
       index: true,
     },
+    audio: {
+      type: String,
+      // required: true
+    },
   },
   { timestamps: true }
 );
