@@ -61,12 +61,6 @@ export const update = async (req, res) => {
   const option = { new: true };
   doc.slug = slugify(doc.fullname);
   try {
-    const exitSinger = await Singer.findOne({ fullname: doc.fullname }).exec();
-    if (exitSinger) {
-      return res.status(400).json({
-        message: "Ca sĩ đã tồn tại!",
-      });
-    }
     const singer = await Singer.findOneAndUpdate(filter, doc, option).exec();
     return res.status(200).json(singer);
   } catch (error) {

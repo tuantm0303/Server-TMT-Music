@@ -61,12 +61,6 @@ export const update = async (req, res) => {
   const option = { new: true };
   doc.slug = slugify(doc.name);
   try {
-    const exitCategory = await Category.findOne({ name: doc.name }).exec();
-    if (exitCategory) {
-      return res.status(400).json({
-        message: "Thể loại đã tồn tại!",
-      });
-    }
     const category = await Category.findOneAndUpdate(
       filter,
       doc,

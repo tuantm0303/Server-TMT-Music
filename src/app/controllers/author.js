@@ -46,12 +46,6 @@ export const update = async (req, res) => {
   const doc = req.body;
   const option = { new: true };
   try {
-    const exitAuthor = await Author.findOne({ name: doc.name }).exec();
-    if (exitAuthor) {
-      return res.status(400).json({
-        message: "Tác giả đã tồn tại!",
-      });
-    }
     const author = await Author.findOneAndUpdate(filter, doc, option).exec();
     return res.status(200).json(author);
   } catch (error) {

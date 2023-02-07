@@ -73,12 +73,6 @@ export const update = async (req, res) => {
   const option = { new: true };
   doc.slug = slugify(doc.title);
   try {
-    const exitSong = await Song.findOne({ title: doc.title }).exec();
-    if (exitSong) {
-      return res.status(400).json({
-        message: "Bài hát đã tồn tại!",
-      });
-    }
     const song = await Song.findOneAndUpdate(filter, doc, option).exec();
     return res.status(200).json(song);
   } catch (error) {
