@@ -36,7 +36,7 @@ const songSchema = new Schema(
     },
     audio: {
       type: String,
-      // required: true
+      required: true,
     },
   },
   { timestamps: true }
