@@ -10,6 +10,6 @@ export const connectionMongo = mongoose
     `${runLocalhost.uri}:${runLocalhost.port}/${runLocalhost.databaseName}`
   )
   .then(() => console.log("Connect Database success!"))
-  .catch((error) => console.log(error));
+  .catch((error) => console.log('error: ', error));
 
 export default connectionMongo;
