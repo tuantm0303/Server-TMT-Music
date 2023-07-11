@@ -1,8 +1,9 @@
 import * as authorController from "./author";
 import * as categoryController from "./category";
+import * as menuController from "./menu";
 import * as singerController from "./singer";
-import * as songController from "./song";
 import * as slideController from "./slide";
+import * as songController from "./song";
 
 export default {
   authorController,
@@ -10,4 +11,5 @@ export default {
   singerController,
   songController,
   slideController,
+  menuController
 };
