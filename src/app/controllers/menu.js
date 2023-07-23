@@ -1,3 +1,4 @@
+import slugify from "slugify";
 import { Menu } from "../models";
 
 export const list = async (req, res) => {
@@ -25,9 +26,10 @@ export const read = async (req, res) => {
 
 export const create = async (req, res) => {
   const doc = req.body;
+  doc.slug = slugify(doc.name);
   try {
-    const exitAuthor = await Menu.findOne({ name: doc.name }).exec();
-    if (exitAuthor) {
+    const exitMenu = await Menu.findOne({ name: doc.name }).exec();
+    if (exitMenu) {
       return res.status(400).json({
         message: "menu đã tồn tại!",
       });
@@ -45,6 +47,7 @@ export const update = async (req, res) => {
   const filter = { _id: req.params.id };
   const doc = req.body;
   const option = { new: true };
+  doc.slug = slugify(doc.name);
   try {
     const menu = await Menu.findOneAndUpdate(filter, doc, option).exec();
     return res.status(200).json(menu);

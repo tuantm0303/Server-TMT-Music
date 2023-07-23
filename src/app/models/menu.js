@@ -14,6 +14,15 @@ const menuSchema = new Schema(
       type: String,
       required: true
     },
+    slug: {
+      type: String,
+      lowercase: true,
+      index: true,
+    },
+    path: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
