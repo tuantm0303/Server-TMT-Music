@@ -38,6 +38,10 @@ const songSchema = new Schema(
       type: String,
       required: true,
     },
+    favourite: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );
